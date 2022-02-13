@@ -1,5 +1,5 @@
 # ATTACKmd
-Mitre att&amp;ck framework tactics and techniques in markdown format for best use in Obsidian.
+Mitre att&amp;ck framework tactics and techniques in markdown format for best use in Obsidian. In progress...
 
 https://user-images.githubusercontent.com/68388221/153761494-0f7dcbc1-2dc2-4d31-bce2-db3a7a648fc8.mp4
 
@@ -14,8 +14,6 @@ I do not include the "software" and "mitigations" part which have less interest 
 ## Use cases
 Personally, I use it as an immutable referential (no enrichment or interpretation) that I quote and use in other notes in my Obsidian vault.
 As a bonus, the graphic view which allows to have a macro view of the links between tactics and techniques which I find quite satisfying to watch and analyze.
-
-In progress...
 
 https://user-images.githubusercontent.com/68388221/153759443-ee1e64fa-0531-4cfb-b249-513103341bc5.mp4
 
