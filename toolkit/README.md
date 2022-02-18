@@ -1,0 +1,1 @@
+Just to remind me of the methodology for replacing links in wikilinks.
