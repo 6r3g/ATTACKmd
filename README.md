@@ -1,5 +1,5 @@
 # ATTACKmd
-Mitre att&amp;ck framework tactics and techniques in markdown format for best use in Obsidian. In progress...
+Mitre att&amp;ck framework tactics and techniques in markdown format for best use in Obsidian.
 
 https://user-images.githubusercontent.com/68388221/153761494-0f7dcbc1-2dc2-4d31-bce2-db3a7a648fc8.mp4
 
