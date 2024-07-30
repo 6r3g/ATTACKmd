@@ -91,7 +91,7 @@ Scripting interpreters automate tasks and extend functionality beyond the comman
 
 Adversaries can use the network CLI to change how network devices behave and operate. The CLI may be used to manipulate traffic flows to intercept or manipulate data, modify startup configuration parameters to load malicious system software, or to disable security features or logging to avoid detection. [1](https://blogs.cisco.com/security/evolution-of-attacks-on-cisco-ios-devices)
 
-#### Command and Scripting Interpreter: Cloud API - T1059.009
+#### Cloud API - T1059.009
 [more on T1059.009](https://attack.mitre.org/techniques/T1059/009)
 
 Adversaries may abuse cloud APIs to execute malicious commands. APIs available in cloud environments provide various functionalities and are a feature-rich method for programmatic access to nearly all aspects of a tenant. These APIs may be utilized through various methods such as command line interpreters (CLIs), in-browser Cloud Shells, [PowerShell](https://attack.mitre.org/techniques/T1059/001) modules like Azure for PowerShell [1](https://github.com/Azure/azure-powershell), or software developer kits (SDKs) available for languages such as [Python](https://attack.mitre.org/techniques/T1059/006).
@@ -100,7 +100,7 @@ Cloud API functionality may allow for administrative access across all major ser
 
 With proper permissions (often via use of credentials such as [[T1528_Steal Application Access Token|Application Access Token]] and [[T1539_Steal Web Session Cookie|Web Session Cookie]] ), adversaries may abuse cloud APIs to invoke various functions that execute malicious actions. For example, CLI and PowerShell functionality may be accessed through binaries installed on cloud-hosted or on-premises hosts or accessed through a browser-based cloud shell offered by many cloud platforms (such as AWS, Azure, and GCP). These cloud shells are often a packaged unified environment to use CLI and/or scripting modules hosted as a container in the cloud environment.
 
-#### Command and Scripting Interpreter: AutoHotKey & AutoIT - T1059.010
+#### AutoHotKey & AutoIT - T1059.010
 [more on T1059.010](https://attack.mitre.org/techniques/T1059/010)
 
 Adversaries may execute commands and perform malicious tasks using AutoIT and AutoHotKey automation scripts. AutoIT and AutoHotkey (AHK) are scripting languages that enable users to automate Windows tasks. These automation scripts can be used to perform a wide variety of actions, such as clicking on buttons, entering text, and opening and closing programs. [1](https://www.autoitscript.com/autoit3/docs/intro/running.htm) [2](https://www.autohotkey.com/docs/v1/Program.htm)

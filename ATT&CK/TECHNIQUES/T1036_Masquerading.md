@@ -65,4 +65,21 @@ Adversaries may abuse double extensions to attempt to conceal dangerous file typ
 Common file types, such as text files (.txt, .doc, etc.) and image files (.jpg, .gif, etc.) are typically used as the first extension to appear benign. Executable extensions commonly regarded as dangerous, such as .exe, .lnk, .hta, and .scr, often appear as the second extension and true file type.
 
 
+#### Masquerade File Type - T1036.008
+[more on T1036.008](https://attack.mitre.org/techniques/T1036/008)
 
+Adversaries may masquerade malicious payloads as legitimate files through changes to the payload's formatting, including the file’s signature, extension, and contents. Various file types have a typical standard format, including how they are encoded and organized. For example, a file’s signature (also known as header or magic bytes) is the beginning bytes of a file and is often used to identify the file’s type. For example, the header of a JPEG file, is `0xFF 0xD8` and the file extension is either `.JPE`, `.JPEG` or `.JPG`.
+
+Adversaries may edit the header’s hex code and/or the file extension of a malicious payload in order to bypass file validation checks and/or input sanitization. This behavior is commonly used when payload files are transferred (e.g., [[T1105_Ingress Tool Transfer|Ingress Tool Transfer]]) and stored (e.g., [[T1608_Stage Capabilities#Upload Malware - T1608.001|Upload Malware]]) so that adversaries may move their malware without triggering detections.
+
+Common non-executable file types and extensions, such as text files (`.txt`) and image files (`.jpg`, `.gif`, etc.) may be typically treated as benign. Based on this, adversaries may use a file extension to disguise malware, such as naming a PHP backdoor code with a file name of `test.gif`. A user may not know that a file is malicious due to the benign appearance and file extension.
+
+Polygot files, which are files that have multiple different file types and that function differently based on the application that will execute them, may also be used to disguise malicious malware and capabilities. [1](https://unit42.paloaltonetworks.com/polyglot-file-icedid-payload)
+#### Break Process Trees - T1036.009
+[more on T1036.009](https://attack.mitre.org/techniques/T1036/009)
+
+An adversary may attempt to evade process tree-based analysis by modifying executed malware's parent process ID (PPID). If endpoint protection software leverages the "parent-child" relationship for detection, breaking this relationship could result in the adversary’s behavior not being associated with previous process tree activity. On Unix-based systems breaking this process tree is common practice for administrators to execute software using scripts and programs. [1](https://0xjet.github.io/3OHA/2022/04/11/post.html)
+
+On Linux systems, adversaries may execute a series of [[T1106_Native API|Native API]] calls to alter malware's process tree. For example, adversaries can execute their payload without any arguments, call the `fork()` API call twice, then have the parent process exit. This creates a grandchild process with no parent process that is immediately adopted by the `init` system process (PID 1), which successfully disconnects the execution of the adversary's payload from its previous process tree.
+
+Another example is using the "daemon" syscall to detach from the current parent process and run in the background. [2](https://sandflysecurity.com/blog/bpfdoor-an-evasive-linux-backdoor-technical-analysis/) [3](https://www.microsoft.com/en-us/security/blog/2022/05/19/rise-in-xorddos-a-deeper-look-at-the-stealthy-ddos-malware-targeting-linux-devices/)

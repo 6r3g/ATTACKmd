@@ -20,7 +20,7 @@ Adversaries may check for Internet connectivity on compromised systems. This may
 
 Adversaries may use the results and responses from these requests to determine if the system is capable of communicating with their C2 servers before attempting to connect to them. The results may also be used to identify routes, redirectors, and proxy servers.
 
-#### System Network Configuration Discovery: Wi-Fi Discovery - T1016.002
+#### Wi-Fi Discovery - T1016.002
 [more on T1016.002](https://attack.mitre.org/techniques/T1016/002)
 
 Adversaries may search for information about Wi-Fi networks, such as network names and passwords, on compromised systems. Adversaries may use Wi-Fi information as part of [[T1087_Account Discovery|Account Discovery]] , [[T1018_Remote System Discovery|Remote System Discovery]] , and other discovery or [[CREDENTIAL_ACCESS|Credential Access]] activity to support both ongoing and future campaigns.

@@ -67,7 +67,7 @@ Adversaries may use [[T1078_Valid Accounts|Valid Accounts (T1078)]] to interact 
 
 WinRM is the name of both a Windows service and a protocol that allows a user to interact with a remote system (e.g., run an executable, modify the Registry, modify services).[1](http://msdn.microsoft.com/en-us/library/aa384426) It may be called with the `winrm` command or by any number of programs such as PowerShell.[2](https://www.slideshare.net/kieranjacobsen/lateral-movement-with-power-shell-2) WinRM can be used as a method of remotely interacting with [[T1047_Windows Management Instrumentation|Windows Management Instrumentation (T1047)]].[3](https://msdn.microsoft.com/en-us/library/aa394582.aspx)
 
-#### Remote Services: Cloud Services - T1021.007
+#### Cloud Services - T1021.007
 [more on T1021.007](https://attack.mitre.org/techniques/T1021/007)
 
 Adversaries may log into accessible cloud services within a compromised environment using [[T1078_Valid Accounts|Valid Accounts]] that are synchronized with or federated to on-premises user identities. The adversary may then perform management actions or access cloud-hosted resources as the logged-on user.
@@ -76,7 +76,7 @@ Many enterprises federate centrally managed user identities to cloud services, a
 
 In some cases, adversaries may be able to authenticate to these services via [[T1528_Steal Application Access Token|Application Access Token]] instead of a username and password.
 
-#### Remote Services: Direct Cloud VM Connections - T1021.008
+#### Direct Cloud VM Connections - T1021.008
 [more on T1021.008](https://attack.mitre.org/techniques/T1021/008)
 
 Adversaries may leverage [[T1078_Valid Accounts|Valid Accounts]] to log directly into accessible cloud hosted compute infrastructure through cloud native methods. Many cloud providers offer interactive connections to virtual infrastructure that can be accessed through the [[T1059_Command and Scripting Interpreter#Command and Scripting Interpreter Cloud API - T1059.009|Cloud API]], such as Azure Serial Console [1](https://learn.microsoft.com/en-us/troubleshoot/azure/virtual-machines/serial-console-overview), AWS EC2 Instance Connect [2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-connect-methods.html) [3](https://permiso.io/blog/lucr-3-scattered-spider-getting-saas-y-in-the-cloud), and AWS System Manager. [4](https://docs.aws.amazon.com/systems-manager/latest/userguide/what-is-systems-manager.html).
