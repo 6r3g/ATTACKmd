@@ -63,5 +63,76 @@ Adversaries may deliver payloads to victims that bypass security controls throug
 
 For example, JavaScript Blobs can be abused to dynamically generate malicious files in the victim machine and may be dropped to disk by abusing JavaScript functions such as `msSaveBlob`.[1](https://www.menlosecurity.com/blog/new-attack-alert-duri)[3](https://www.microsoft.com/security/blog/2021/05/27/new-sophisticated-email-based-attack-from-nobelium/)[2](https://outflank.nl/blog/2018/08/14/html-smuggling-explained/)[4](https://research.nccgroup.com/2017/08/08/smuggling-hta-files-in-internet-explorer-edge/)
 
+#### Obfuscated Files or Information: Dynamic API Resolution - T1027.007
+[more on T1027.007](https://attack.mitre.org/techniques/T1027/007)
 
+Adversaries may obfuscate then dynamically resolve API functions called by their malware in order to conceal malicious functionalities and impair defensive analysis. Malware commonly uses various [[T1106_Native API|Native API]] functions provided by the OS to perform various tasks such as those involving processes, files, and other system artifacts.
+
+API functions called by malware may leave static artifacts such as strings in payload files. Defensive analysts may also uncover which functions a binary file may execute via an import address table (IAT) or other structures that help dynamically link calling code to the shared modules that provide functions. [1](https://www.huntress.com/blog/hackers-no-hashing-randomizing-api-hashes-to-evade-cobalt-strike-shellcode-detection) [2](https://www.ired.team/offensive-security/defense-evasion/windows-api-hashing-in-malware)
+
+To avoid static or other defensive analysis, adversaries may use dynamic API resolution to conceal malware characteristics and functionalities. Similar to [Software Packing](https://attack.mitre.org/techniques/T1027/002), dynamic API resolution may change file signatures and obfuscate malicious API function calls until they are resolved and invoked during runtime.
+
+Various methods may be used to obfuscate malware calls to API functions. For example, hashes of function names are commonly stored in malware in lieu of literal strings. Malware can use these hashes (or other identifiers) to manually reproduce the linking and loading process using functions such as `GetProcAddress()` and `LoadLibrary()`. These hashes/identifiers can also be further obfuscated using encryption or other string manipulation tricks (requiring various forms of [[T1140_Deobfuscate-Decode Files or Information|Deobfuscate/Decode Files or Information]] during execution). [3](https://www.blackhat.com/docs/us-15/materials/us-15-Choi-API-Deobfuscator-Resolving-Obfuscated-API-Functions-In-Modern-Packers.pdf) [4](https://dr4k0nia.github.io/dotnet/coding/2022/08/10/HInvoke-and-avoiding-PInvoke.html?s=03) [1](https://www.huntress.com/blog/hackers-no-hashing-randomizing-api-hashes-to-evade-cobalt-strike-shellcode-detection)
+
+#### Obfuscated Files or Information: Stripped Payloads - T1027.008
+[more on T1027.008](https://attack.mitre.org/techniques/T1027/008)
+
+Adversaries may attempt to make a payload difficult to analyze by removing symbols, strings, and other human readable information. Scripts and executables may contain variables names and other strings that help developers document code functionality. Symbols are often created by an operating system’s `linker` when executable payloads are compiled. Reverse engineers use these symbols and strings to analyze code and to identify functionality in payloads. [1](https://www.mandiant.com/resources/blog/golang-internals-symbol-recovery) [2](https://www.intezer.com/blog/malware-analysis/executable-linkable-format-101-part-2-symbols/)
+
+Adversaries may use stripped payloads in order to make malware analysis more difficult. For example, compilers and other tools may provide features to remove or obfuscate strings and symbols. Adversaries have also used stripped payload formats, such as run-only AppleScripts, a compiled and stripped version of [[T1059_Command and Scripting Interpreter#AppleScript - T1059.002|AppleScript]] , to evade detection and analysis. The lack of human-readable information may directly hinder detection and analysis of payloads. [3](https://www.sentinelone.com/labs/fade-dead-adventures-in-reversing-malicious-run-only-applescripts/)
+
+#### Obfuscated Files or Information: Embedded Payloads - T1027.009
+[more on T1027.009](https://attack.mitre.org/techniques/T1027/009)
+
+Adversaries may embed payloads within other files to conceal malicious content from defenses. Otherwise seemingly benign files (such as scripts and executables) may be abused to carry and obfuscate malicious payloads and content. In some cases, embedded payloads may also enable adversaries to [[T1553_Subvert Trust Controls|Subvert Trust Controls]] by not impacting execution controls such as digital signatures and notarization tickets. [1](https://www.sentinelone.com/labs/fade-dead-adventures-in-reversing-malicious-run-only-applescripts/)
+
+Adversaries may embed payloads in various file formats to hide payloads. [2](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-shllink/c41e062d-f764-4f13-bd4f-ea812ab9a4d1) This is similar to [[T1027_Obfuscated Files or Information#Steganography - T1027.003|Steganography]], though does not involve weaving malicious content into specific bytes and patterns related to legitimate digital media formats. [3](https://github.com/peewpw/Invoke-PSImage)
+
+For example, adversaries have been observed embedding payloads within or as an overlay of an otherwise benign binary. [4](https://securelist.com/my-name-is-dtrack/93338/) Adversaries have also been observed nesting payloads (such as executables and run-only scripts) inside a file of the same format. [5](https://www.sentinelone.com/labs/fade-dead-adventures-in-reversing-malicious-run-only-applescripts/)
+
+Embedded content may also be used as [[T1055_Process Injection|Process Injection]] payloads used to infect benign system processes. [6](https://www.trendmicro.com/en_us/research/20/e/netwalker-fileless-ransomware-injected-via-reflective-loading.html) These embedded then injected payloads may be used as part of the modules of malware designed to provide specific features such as encrypting C2 communications in support of an orchestrator module. For example, an embedded module may be injected into default browsers, allowing adversaries to then communicate via the network. [7](https://www.cisa.gov/uscert/ncas/analysis-reports/ar20-303a)
+
+#### Obfuscated Files or Information: Command Obfuscation - T1027.010
+[more on T1027.010](https://attack.mitre.org/techniques/T1027/010)
+
+Adversaries may obfuscate content during command execution to impede detection. Command-line obfuscation is a method of making strings and patterns within commands and scripts more difficult to signature and analyze. This type of obfuscation can be included within commands executed by delivered payloads (e.g., [[T1566_Phishing|Phishing]] and [[T1189_Drive-by Compromise|Drive-by Compromise]] or interactively via [[T1059_Command and Scripting Interpreter|Command and Scripting Interpreter]]. [1](https://www.akamai.com/blog/security/catch-me-if-you-can-javascript-obfuscation) [2](https://bromiley.medium.com/malware-monday-vbscript-and-vbe-files-292252c1a16)
+
+For example, adversaries may abuse syntax that utilizes various symbols and escape characters (such as spacing, `^`, `+`. `$`, and `%`) to make commands difficult to analyze while maintaining the same intended functionality. [3](https://redcanary.com/threat-detection-report/techniques/powershell/) Many languages support built-in obfuscation in the form of base64 or URL encoding. [4](https://learn.microsoft.com/powershell/module/microsoft.powershell.core/about/about_powershell_exe?view=powershell-5.1#-encodedcommand-base64encodedcommand) Adversaries may also manually implement command obfuscation via string splitting (`"Wor"+"d.Application"`), order and casing of characters (`rev <<<'dwssap/cte/ tac'`), globing (`mkdir -p '/tmp/:&$NiA'`), as well as various tricks involving passing strings through tokens/environment variables/input streams. [5](https://bashfuscator.readthedocs.io/en/latest/Mutators/command_obfuscators/index.html) [6](https://web.archive.org/web/20170923102302/https://www.fireeye.com/blog/threat-research/2017/06/obfuscation-in-the-wild.html)
+
+Adversaries may also use tricks such as directory traversals to obfuscate references to the binary being invoked by a command (`C:\voi\pcw\..\..\Windows\tei\qs\k\..\..\..\system32\erool\..\wbem\wg\je\..\..\wmic.exe shadowcopy delete`). [7](https://twitter.com/rfackroyd/status/1639136000755765254)
+
+Tools such as `Invoke-Obfuscation` and `Invoke-DOSfucation` have also been used to obfuscate commands. [8](https://github.com/danielbohannon/Invoke-DOSfuscation) [9](https://github.com/danielbohannon/Invoke-Obfuscation)
+
+#### Obfuscated Files or Information: Fileless Storage - T1027.011
+[more on T1027.011](https://attack.mitre.org/techniques/T1027/011)
+
+Adversaries may store data in "fileless" formats to conceal malicious activity from defenses. Fileless storage can be broadly defined as any format other than a file. Common examples of non-volatile fileless storage include the Windows Registry, event logs, or WMI repository. [1](https://learn.microsoft.com/microsoft-365/security/intelligence/fileless-threats) [2](https://securelist.com/a-new-secret-stash-for-fileless-malware/106393/)
+
+Similar to fileless in-memory behaviors such as [[T1620_Reflective Code Loading|Reflective Code Loading]] and [[T1055_Process Injection|Process Injection]], fileless data storage may remain undetected by anti-virus and other endpoint security tools that can only access specific file formats from disk storage.
+
+Adversaries may use fileless storage to conceal various types of stored data, including payloads/shellcode (potentially being used as part of [[PERSISTENCE|Persistence]]) and collected data not yet exfiltrated from the victim (e.g., [[T1074_Data Staged#Local Data Staging - T1074.001|Local Data Staging]]). Adversaries also often encrypt, encode, splice, or otherwise obfuscate this fileless data when stored.
+
+Some forms of fileless storage activity may indirectly create artifacts in the file system, but in central and otherwise difficult to inspect formats such as the WMI (e.g., `%SystemRoot%\System32\Wbem\Repository`) or Registry (e.g., `%SystemRoot%\System32\Config`) physical files. [1](https://learn.microsoft.com/microsoft-365/security/intelligence/fileless-threats)
+
+####  - T1027.012
+[more on T1027.012](https://attack.mitre.org/techniques/T1027/012)
+
+Adversaries may smuggle commands to download malicious payloads past content filters by hiding them within otherwise seemingly benign windows shortcut files. Windows shortcut files (.LNK) include many metadata fields, including an icon location field (also known as the `IconEnvironmentDataBlock`) designed to specify the path to an icon file that is to be displayed for the LNK file within a host directory.
+
+Adversaries may abuse this LNK metadata to download malicious payloads. For example, adversaries have been observed using LNK files as phishing payloads to deliver malware. Once invoked (e.g., [[T1204_User Execution#Malicious File - T1204.002|Malicious File]]), payloads referenced via external URLs within the LNK icon location field may be downloaded. These files may also then be invoked by [[T1059_Command and Scripting Interpreter|Command and Scripting Interpreter]]/[[T1218_Signed Binary Proxy Execution|System Binary Proxy Execution]] arguments within the target path field of the LNK. [1](https://unprotect.it/technique/shortcut-hiding/) [2](https://www.uperesia.com/booby-trapped-shortcut)
+
+LNK Icon Smuggling may also be utilized post compromise, such as malicious scripts executing an LNK on an infected host to download additional malicious payloads.
+
+#### Obfuscated Files or Information: Encrypted/Encoded File - T1027.013
+[more on T1027.013](https://attack.mitre.org/techniques/T1027/013)
+
+Adversaries may encrypt or encode files to obfuscate strings, bytes, and other specific patterns to impede detection. Encrypting and/or encoding file content aims to conceal malicious artifacts within a file used in an intrusion. Many other techniques, such as [[T1027_Obfuscated Files or Information#Software Packing - T1027.002|Software Packing]], [[T1027_Obfuscated Files or Information#Steganography - T1027.003|Steganography]], and [[T1027_Obfuscated Files or Information#Obfuscated Files or Information Embedded Payloads - T1027.009|Embedded Payloads]], share this same broad objective. Encrypting and/or encoding files could lead to a lapse in detection of static signatures, only for this malicious content to be revealed (i.e., [[T1140_Deobfuscate-Decode Files or Information|Deobfuscate/Decode Files or Information]]) at the time of execution/use.
+
+This type of file obfuscation can be applied to many file artifacts present on victim hosts, such as malware log/configuration and payload files. [1](https://www.crowdstrike.com/blog/shlayer-malvertising-campaigns-still-using-flash-update-disguise/) Files can be encrypted with a hardcoded or user-supplied key, as well as otherwise obfuscated using standard encoding/compression schemes such as Base64.
+
+The entire content of a file may be obfuscated, or just specific functions or values (such as C2 addresses). Encryption and encoding may also be applied in redundant layers for additional protection.
+
+For example, adversaries may abuse password-protected Word documents or self-extracting (SFX) archives as a method of encrypting/encoding a file such as a [[T1566_Phishing|Phishing]] payload. These files typically function by attaching the intended archived content to a decompressor stub that is executed when the file is invoked (e.g., [[T1204_User Execution|User Execution]]). [2](https://www.crowdstrike.com/blog/self-extracting-archives-decoy-files-and-their-hidden-payloads/)
+
+Adversaries may also abuse file-specific as well as custom encoding schemes. For example, Byte Order Mark (BOM) headers in text files may be abused to manipulate and obfuscate file content until [[T1059_Command and Scripting Interpreter|Command and Scripting Interpreter]] execution.
 

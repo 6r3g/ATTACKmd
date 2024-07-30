@@ -67,5 +67,21 @@ Adversaries may use [[T1078_Valid Accounts|Valid Accounts (T1078)]] to interact 
 
 WinRM is the name of both a Windows service and a protocol that allows a user to interact with a remote system (e.g., run an executable, modify the Registry, modify services).[1](http://msdn.microsoft.com/en-us/library/aa384426) It may be called with the `winrm` command or by any number of programs such as PowerShell.[2](https://www.slideshare.net/kieranjacobsen/lateral-movement-with-power-shell-2) WinRM can be used as a method of remotely interacting with [[T1047_Windows Management Instrumentation|Windows Management Instrumentation (T1047)]].[3](https://msdn.microsoft.com/en-us/library/aa394582.aspx)
 
+#### Remote Services: Cloud Services - T1021.007
+[more on T1021.007](https://attack.mitre.org/techniques/T1021/007)
 
+Adversaries may log into accessible cloud services within a compromised environment using [[T1078_Valid Accounts|Valid Accounts]] that are synchronized with or federated to on-premises user identities. The adversary may then perform management actions or access cloud-hosted resources as the logged-on user.
+
+Many enterprises federate centrally managed user identities to cloud services, allowing users to login with their domain credentials in order to access the cloud control plane. Similarly, adversaries may connect to available cloud services through the web console or through the cloud command line interface (CLI) (e.g., [[T1059_Command and Scripting Interpreter#Command and Scripting Interpreter Cloud API - T1059.009|Cloud API]] , using commands such as `Connect-AZAccount` for Azure PowerShell, `Connect-MgGraph` for Microsoft Graph PowerShell, and `gcloud auth login` for the Google Cloud CLI.
+
+In some cases, adversaries may be able to authenticate to these services via [[T1528_Steal Application Access Token|Application Access Token]] instead of a username and password.
+
+#### Remote Services: Direct Cloud VM Connections - T1021.008
+[more on T1021.008](https://attack.mitre.org/techniques/T1021/008)
+
+Adversaries may leverage [[T1078_Valid Accounts|Valid Accounts]] to log directly into accessible cloud hosted compute infrastructure through cloud native methods. Many cloud providers offer interactive connections to virtual infrastructure that can be accessed through the [[T1059_Command and Scripting Interpreter#Command and Scripting Interpreter Cloud API - T1059.009|Cloud API]], such as Azure Serial Console [1](https://learn.microsoft.com/en-us/troubleshoot/azure/virtual-machines/serial-console-overview), AWS EC2 Instance Connect [2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-connect-methods.html) [3](https://permiso.io/blog/lucr-3-scattered-spider-getting-saas-y-in-the-cloud), and AWS System Manager. [4](https://docs.aws.amazon.com/systems-manager/latest/userguide/what-is-systems-manager.html).
+
+Methods of authentication for these connections can include passwords, application access tokens, or SSH keys. These cloud native methods may, by default, allow for privileged access on the host with SYSTEM or root level access.
+
+Adversaries may utilize these cloud native methods to directly access virtual infrastructure and pivot through an environment. [5](https://www.mandiant.com/resources/blog/sim-swapping-abuse-azure-serial) These connections typically provide direct console access to the VM rather than the execution of scripts (i.e., [[T1651_Cloud Administration Command|Cloud Administration Command]] .
 
