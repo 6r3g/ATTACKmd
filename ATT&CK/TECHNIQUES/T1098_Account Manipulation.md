@@ -43,4 +43,22 @@ Adversaries may modify the SSH `authorized_keys` file to maintain persistence on
 
 Adversaries may modify SSH `authorized_keys` files directly with scripts or shell commands to add their own adversary-supplied public keys. This ensures that an adversary possessing the corresponding private key may log in as an existing user via SSH.[2](https://www.venafi.com/blog/growing-abuse-ssh-keys-commodity-malware-campaigns-now-equipped-ssh-capabilities) [3](https://www.cybereason.com/blog/new-pervasive-worm-exploiting-linux-exim-server-vulnerability)
 
+#### Device Registration - T1098.005
+[more on T1098.005](https://attack.mitre.org/techniques/T1098/005)
 
+Adversaries may register a device to an adversary-controlled account. Devices may be registered in a multifactor authentication (MFA) system, which handles authentication to the network, or in a device management system, which handles device access and compliance.
+
+MFA systems, such as Duo or Okta, allow users to associate devices with their accounts in order to complete MFA requirements. An adversary that compromises a user’s credentials may enroll a new device in order to bypass initial MFA requirements and gain persistent access to a network. [1](https://www.cisa.gov/uscert/ncas/alerts/aa22-074a) [2](https://www.darkreading.com/threat-intelligence/fireeye-s-mandia-severity-zero-alert-led-to-discovery-of-solarwinds-attack) In some cases, the MFA self-enrollment process may require only a username and password to enroll the account's first device or to enroll a device to an inactive account. [3](https://www.mandiant.com/resources/blog/apt29-continues-targeting-microsoft)
+
+Similarly, an adversary with existing access to a network may register a device to Azure AD and/or its device management system, Microsoft Intune, in order to access sensitive data or resources while bypassing conditional access policies. [4](https://o365blog.com/post/devices/) [5](https://o365blog.com/post/mdm) [6](https://www.microsoft.com/security/blog/2022/03/22/dev-0537-criminal-actor-targeting-organizations-for-data-exfiltration-and-destruction/)
+
+Devices registered in Azure AD may be able to conduct [[T1534_Internal Spearphishing|Internal Spearphishing]] campaigns via intra-organizational emails, which are less likely to be treated as suspicious by the email client. [7](https://www.microsoft.com/security/blog/2022/01/26/evolved-phishing-device-registration-trick-adds-to-phishers-toolbox-for-victims-without-mfa) Additionally, an adversary may be able to perform a [[T1499_Endpoint Denial of Service#Service Exhaustion Flood - T1499.002|Service Exhaustion Flood]] on an Azure AD tenant by registering a large number of devices. [8](https://o365blog.com/post/bprt/)
+
+#### Additional Container Cluster Roles - T1098.006
+[more on T1098.006](https://attack.mitre.org/techniques/T1098/006)
+
+An adversary may add additional roles or permissions to an adversary-controlled user or service account to maintain persistent access to a container orchestration system. For example, an adversary with sufficient permissions may create a RoleBinding or a ClusterRoleBinding to bind a Role or ClusterRole to a Kubernetes account. [1](https://kubernetes.io/docs/concepts/security/rbac-good-practices/) [2](https://blog.aquasec.com/leveraging-kubernetes-rbac-to-backdoor-clusters) Where attribute-based access control (ABAC) is in use, an adversary with sufficient permissions may modify a Kubernetes ABAC policy to give the target account additional permissions. [3](https://kubernetes.io/docs/reference/access-authn-authz/abac/)
+
+This account modification may immediately follow [[T1136_Create Account|Create Account]] or other malicious account activity. Adversaries may also modify existing [[T1078_Valid Accounts|Valid Accounts]] that they have compromised.
+
+Note that where container orchestration systems are deployed in cloud environments, as with Google Kubernetes Engine, Amazon Elastic Kubernetes Service, and Azure Kubernetes Service, cloud-based role-based access control (RBAC) assignments or ABAC policies can often be used in place of or in addition to local permission assignments. [4](https://cloud.google.com/kubernetes-engine/docs/how-to/iam) [5](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) [6](https://learn.microsoft.com/en-us/azure/aks/concepts-identity) In these cases, this technique may be used in conjunction with [[T1098_Account Manipulation#Add Office 365 Global Administrator Role - T1098.003|Additional Cloud Roles]].

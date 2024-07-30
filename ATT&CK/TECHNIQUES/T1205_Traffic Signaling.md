@@ -28,3 +28,12 @@ This technique has been observed to both for the dynamic opening of a listening 
 
 The observation of the signal packets to trigger the communication can be conducted through different methods. One means, originally implemented by Cd00r [1](https://www.giac.org/paper/gcih/342/handle-cd00r-invisible-backdoor/103631), is to use the libpcap libraries to sniff for the packets in question. Another method leverages raw sockets, which enables the malware to use ports that are already open for use by other programs.
 
+#### Socket Filters - T1205.002
+[more on T1205.002](https://attack.mitre.org/techniques/T1205/002)
+
+Adversaries may attach filters to a network socket to monitor then activate backdoors used for persistence or command and control. With elevated permissions, adversaries can use features such as the `libpcap` library to open sockets and install filters to allow or disallow certain types of data to come through the socket. The filter may apply to all traffic passing through the specified network interface (or every interface if not specified). When the network interface receives a packet matching the filter criteria, additional actions can be triggered on the host, such as activation of a reverse shell.
+
+To establish a connection, an adversary sends a crafted packet to the targeted host that matches the installed filter criteria. [1](http://recursos.aldabaknocking.com/libpcapHakin9LuisMartinGarcia.pdf) Adversaries have used these socket filters to trigger the installation of implants, conduct ping backs, and to invoke command shells. Communication with these socket filters may also be used in conjunction with [[T1572_Protocol Tunneling|Protocol Tunneling]]. [2](https://exatrack.com/public/Tricephalic_Hellkeeper.pdf) [3](https://www.leonardo.com/documents/20142/10868623/Malware+Technical+Insight+_Turla+%E2%80%9CPenquin_x64%E2%80%9D.pdf)
+
+Filters can be installed on any Unix-like platform with `libpcap` installed or on Windows hosts using `Winpcap`. Adversaries may use either `libpcap` with `pcap_setfilter` or the standard library function `setsockopt` with `SO_ATTACH_FILTER` options. Since the socket connection is not active until the packet is received, this behavior may be difficult to detect due to the lack of activity on a host, low CPU overhead, and limited visibility into raw socket usage.
+
