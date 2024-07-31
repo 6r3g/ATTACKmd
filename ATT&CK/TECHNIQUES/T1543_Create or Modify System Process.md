@@ -59,3 +59,13 @@ Adversaries may install a Launch Daemon configured to execute at startup by usin
 
 Additionally, system configuration changes (such as the installation of third party package managing software) may cause folders such as `usr/local/bin` to become globally writeable. So, it is possible for poor configurations to allow an adversary to modify executables referenced by current Launch Daemon's plist files.[6](https://bradleyjkemp.dev/post/launchdaemon-hijacking/)[7](https://www.sentinelone.com/blog/how-malware-persists-on-macos/)
 
+#### Container Service - T1543.005
+[more on T1543.005](https://attack.mitre.org/techniques/T1543/005)
+
+Adversaries may create or modify container or container cluster management tools that run as daemons, agents, or services on individual hosts. These include software for creating and managing individual containers, such as Docker and Podman, as well as container cluster node-level agents such as kubelet. By modifying these services, an adversary may be able to achieve persistence or escalate their privileges on a host.
+
+For example, by using the `docker run` or `podman run` command with the `restart=always` directive, a container can be configured to persistently restart on the host. [1](https://blog.aquasec.com/teamtnt-reemerged-with-new-aggressive-cloud-campaign) A user with access to the (rootful) docker command may also be able to escalate their privileges on the host. [2](https://gtfobins.github.io/gtfobins/docker/)
+
+In Kubernetes environments, DaemonSets allow an adversary to persistently [[T1610_Deploy Container|Deploy Container]]s on all nodes, including ones added later to the cluster. [3](https://blog.aquasec.com/leveraging-kubernetes-rbac-to-backdoor-clusters) [4](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/) Pods can also be deployed to specific nodes using the `nodeSelector` or `nodeName` fields in the pod spec. [5](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/) [6](https://blog.appsecco.com/kubernetes-namespace-breakout-using-insecure-host-path-volume-part-1-b382f2a6e216)
+
+Note that containers can also be configured to run as [Systemd Service](https://attack.mitre.org/techniques/T1543/002)s. [7](https://www.redhat.com/sysadmin/podman-run-pods-systemd-services) [8](https://docs.docker.com/config/containers/start-containers-automatically/)

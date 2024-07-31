@@ -90,5 +90,30 @@ Adversaries may abuse resource forks to hide malicious code or executables to ev
 
 Adversaries can use resource forks to hide malicious data that may otherwise be stored directly in files. Adversaries can execute content with an attached resource fork, at a specified offset, that is moved to an executable location then invoked. Resource fork content may also be obfuscated/encrypted until execution.[4](https://www.sentinelone.com/labs/resourceful-macos-malware-hides-in-named-fork/)[5](https://blogs.vmware.com/security/2020/06/tau-threat-analysis-bundlore-macos-mm-install-macos.html)
 
+#### Process Argument Spoofing - T1564.010
+[more on T1564.010](https://attack.mitre.org/techniques/T1564/010)
 
+Adversaries may attempt to hide process command-line arguments by overwriting process memory. Process command-line arguments are stored in the process environment block (PEB), a data structure used by Windows to store various information about/used by a process. The PEB includes the process command-line arguments that are referenced when executing the process. When a process is created, defensive tools/sensors that monitor process creations may retrieve the process arguments from the PEB. [1](https://docs.microsoft.com/en-us/windows/win32/api/winternl/ns-winternl-peb) [2](https://blog.xpnsec.com/how-to-argue-like-cobalt-strike/)
+
+Adversaries may manipulate a process PEB to evade defenses. For example, [[T1055_Process Injection#Process Hollowing - T1055.012|Process Hollowing]] can be abused to spawn a process in a suspended state with benign arguments. After the process is spawned and the PEB is initialized (and process information is potentially logged by tools/sensors), adversaries may override the PEB to modify the command-line arguments (ex: using the [[T1106_Native API|Native API]] `WriteProcessMemory()` function) then resume process execution with malicious arguments. [3](https://blog.cobaltstrike.com/2019/01/02/cobalt-strike-3-13-why-do-we-argue/) [2](https://blog.xpnsec.com/how-to-argue-like-cobalt-strike/) [4](https://blog.nviso.eu/2020/02/04/the-return-of-the-spoof-part-2-command-line-spoofing/)
+
+Adversaries may also execute a process with malicious command-line arguments then patch the memory with benign arguments that may bypass subsequent process memory analysis. [5](https://www.fireeye.com/blog/threat-research/2021/04/unc2447-sombrat-and-fivehands-ransomware-sophisticated-financial-threat.html)
+
+This behavior may also be combined with other tricks (such as [[T1134_Access Token Manipulation#Parent PID Spoofing - T1134.004|Parent PID Spoofing]]) to manipulate or further evade process-based detections.
+
+#### Ignore Process Interrupts - T1564.011
+[more on T1564.011](https://attack.mitre.org/techniques/T1564/011)
+
+Adversaries may evade defensive mechanisms by executing commands that hide from process interrupt signals. Many operating systems use signals to deliver messages to control process behavior. Command interpreters often include specific commands/flags that ignore errors and other hangups, such as when the user of the active session logs off. [1](https://man7.org/linux/man-pages/man7/signal.7.html) These interrupt signals may also be used by defensive tools and/or analysts to pause or terminate specified running processes.
+
+Adversaries may invoke processes using `nohup`, [[T1059_Command and Scripting Interpreter#Powershell - T1059.001|PowerShell]] `-ErrorAction SilentlyContinue`, or similar commands that may be immune to hangups. [2](https://linux.die.net/man/1/nohup) [3](https://learn.microsoft.com/powershell/module/microsoft.powershell.core/about/about_preference_variables?view=powershell-7.3#debugpreference) This may enable malicious commands and malware to continue execution through system events that would otherwise terminate its execution, such as users logging off or the termination of its C2 network connection.
+
+Hiding from process interrupt signals may allow malware to continue execution, but unlike [[T1546_Event Triggered Execution#Trap - T1546.005|Trap]] this does not establish [[PERSISTENCE|Persistence]] since the process will not be re-invoked once actually terminated.
+
+#### File/Path Exclusions - T1564.012
+[more on T1564.012](https://attack.mitre.org/techniques/T1564/012)
+
+Adversaries may attempt to hide their file-based artifacts by writing them to specific folders or file names excluded from antivirus (AV) scanning and other defensive capabilities. AV and other file-based scanners often include exclusions to optimize performance as well as ease installation and legitimate use of applications. These exclusions may be contextual (e.g., scans are only initiated in response to specific triggering events/alerts), but are also often hardcoded strings referencing specific folders and/or files assumed to be trusted and legitimate. [1](https://learn.microsoft.com/en-us/microsoft-365/security/defender-endpoint/configure-contextual-file-folder-exclusions-microsoft-defender-antivirus)
+
+Adversaries may abuse these exclusions to hide their file-based artifacts. For example, rather than tampering with tool settings to add a new exclusion (i.e., [[T1562_Impair Defenses#Disable or Modify Tools - T1562.001|Disable or Modify Tools]]), adversaries may drop their file-based payloads in default or otherwise well-known exclusions. Adversaries may also use [[T1518_Software Discovery#Security Software Discovery - T1518.001|Security Software Discovery]] and other [[DISCOVERY|Discovery]]/[[RECONNAISSANCE|Reconnaissance]] activities to both discover and verify existing exclusions in a victim environment.
 

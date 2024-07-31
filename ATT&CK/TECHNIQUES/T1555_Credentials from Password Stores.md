@@ -58,5 +58,14 @@ Adversaries may acquire user credentials from third-party password managers.[1](
 
 Adversaries may acquire user credentials from password managers by extracting the master password and/or plain-text credentials from memory.[2](https://resources.fox-it.com/rs/170-CAK-271/images/201912_Report_Operation_Wocao.pdf)[3](https://github.com/GhostPack/KeeThief) Adversaries may extract credentials from memory via [[T1212_Exploitation for Credential Access|Exploitation for Credential Access (T1212)]].[4](https://nvd.nist.gov/vuln/detail/CVE-2019-3610) Adversaries may also try brute forcing via [[T1110_Brute Force#Password Guessing - T1110 001|Password Guessing (T1110.001)]] to obtain the master password of a password manager.[5](https://www.cybereason.com/blog/dropping-anchor-from-a-trickbot-infection-to-the-discovery-of-the-anchor-malware)
 
+#### Cloud Secrets Management Stores - T1555.006
+[more on T1555.006](https://attack.mitre.org/techniques/T1555/006)
 
+Adversaries may acquire credentials from cloud-native secret management solutions such as AWS Secrets Manager, GCP Secret Manager, Azure Key Vault, and Terraform Vault.
+
+Secrets managers support the secure centralized management of passwords, API keys, and other credential material. Where secrets managers are in use, cloud services can dynamically acquire credentials via API requests rather than accessing secrets insecurely stored in plain text files or environment variables.
+
+If an adversary is able to gain sufficient privileges in a cloud environment – for example, by obtaining the credentials of high-privileged [[T1078_Valid Accounts#Cloud Accounts - T1078.004|Cloud Accounts]] or compromising a service that has permission to retrieve secrets – they may be able to request secrets from the secrets manager. This can be accomplished via commands such as `get-secret-value` in AWS, `gcloud secrets describe` in GCP, and `az key vault secret show` in Azure. [1](https://permiso.io/blog/lucr-3-scattered-spider-getting-saas-y-in-the-cloud) [2](https://sysdig.com/blog/scarleteel-2-0/) [3](https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieving-secrets.html) [4](https://cloud.google.com/secret-manager/docs/view-secret-details) [5](https://learn.microsoft.com/en-us/azure/key-vault/secrets/quick-create-cli)
+
+**Note:** this technique is distinct from [[T1552_Unsecured Credentials#Cloud Instance Metadata API - T1552.005|Cloud Instance Metadata API]] in that the credentials are being directly requested from the cloud secrets manager, rather than through the medium of the instance metadata API.
 

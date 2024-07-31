@@ -79,5 +79,10 @@ Adversaries may gather credentials via APIs within a containers environment. API
 
 An adversary may access the Docker API to collect logs that contain credentials to cloud, container, and various other resources in the environment.[3](https://unit42.paloaltonetworks.com/attackers-tactics-and-techniques-in-unsecured-docker-daemons-revealed/) An adversary with sufficient permissions, such as via a pod's service account, may also use the Kubernetes API to retrieve credentials from the Kubernetes API server. These credentials may include those needed for Docker API authentication or secrets from Kubernetes cluster components.
 
+#### Chat Messages - T1552.008
+[more on T1552.008](https://attack.mitre.org/techniques/T1552/008)
 
+Adversaries may directly collect unsecured credentials stored or passed through user communication services. Credentials may be sent and stored in user chat communication applications such as email, chat services like Slack or Teams, collaboration tools like Jira or Trello, and any other services that support user communication. Users may share various forms of credentials (such as usernames and passwords, API keys, or authentication tokens) on private or public corporate internal communications channels.
+
+Rather than accessing the stored chat logs (i.e., [[T1552_Unsecured Credentials#Credentials In Files - T1552.001|Credentials In Files]]), adversaries may directly access credentials within these services on the user endpoint, through servers hosting the services, or through administrator portals for cloud hosted services. Adversaries may also compromise integration tools like Slack Workflows to automatically search through messages to extract user credentials. These credentials may then be abused to perform follow-on activities such as lateral movement or privilege escalation  [1](https://www.nightfall.ai/blog/saas-slack-security-risks-2020).
 

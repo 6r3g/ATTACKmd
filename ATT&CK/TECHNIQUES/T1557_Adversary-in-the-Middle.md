@@ -37,5 +37,21 @@ The ARP protocol is stateless and does not require authentication. Therefore, de
 
 Adversaries may use ARP cache poisoning as a means to intercept network traffic. This activity may be used to collect and/or relay data such as credentials, especially those sent over an insecure, unencrypted protocol.[2](https://pen-testing.sans.org/resources/papers/gcih/real-world-arp-spoofing-105411)
 
+#### DHCP Spoofing - T1557.003
+[more on T1557.003](https://attack.mitre.org/techniques/T1557/003)
 
+Adversaries may redirect network traffic to adversary-owned systems by spoofing Dynamic Host Configuration Protocol (DHCP) traffic and acting as a malicious DHCP server on the victim network. By achieving the adversary-in-the-middle (AiTM) position, adversaries may collect network communications, including passed credentials, especially those sent over insecure, unencrypted protocols. This may also enable follow-on behaviors such as [[T1040_Network Sniffing|Network Sniffing]] or [[T1565_Data Manipulation#Transmitted Data Manipulation - T1565.002|Transmitted Data Manipulation]].
+
+DHCP is based on a client-server model and has two functionalities: a protocol for providing network configuration settings from a DHCP server to a client and a mechanism for allocating network addresses to clients. [1](https://datatracker.ietf.org/doc/html/rfc2131) The typical server-client interaction is as follows:
+
+1. The client broadcasts a `DISCOVER` message.
+2. The server responds with an `OFFER` message, which includes an available network address.
+3. The client broadcasts a `REQUEST` message, which includes the network address offered.
+4. The server acknowledges with an `ACK` message and the client receives the network configuration parameters.
+
+Adversaries may spoof as a rogue DHCP server on the victim network, from which legitimate hosts may receive malicious network configurations. For example, malware can act as a DHCP server and provide adversary-owned DNS servers to the victimized computers. [2](https://isc.sans.edu/forums/diary/new+rogueDHCP+server+malware/6025/) [3](https://web.archive.org/web/20150923175837/http://www.symantec.com/security_response/writeup.jsp?docid=2009-032211-2952-99&tabid=2) Through the malicious network configurations, an adversary may achieve the AiTM position, route client traffic through adversary-controlled systems, and collect information from the client network.
+
+DHCPv6 clients can receive network configuration information without being assigned an IP address by sending a `INFORMATION-REQUEST (code 11)` message to the `All_DHCP_Relay_Agents_and_Servers` multicast address. [4](https://datatracker.ietf.org/doc/html/rfc3315) Adversaries may use their rogue DHCP server to respond to this request message with malicious network configurations.
+
+Rather than establishing an AiTM position, adversaries may also abuse DHCP spoofing to perform a DHCP exhaustion attack (i.e, [[T1499_Endpoint Denial of Service#Service Exhaustion Flood - T1499.002|Service Exhaustion Flood]]) by generating many broadcast DISCOVER messages to exhaust a network’s DHCP allocation pool.
 

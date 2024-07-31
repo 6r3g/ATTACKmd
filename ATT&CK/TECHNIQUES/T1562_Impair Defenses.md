@@ -90,5 +90,21 @@ Adversaries may downgrade or use a version of system features that may be outdat
 
 Adversaries may downgrade and use less-secure versions of various features of a system, such as [[T1059_Command and Scripting Interpreter|Command and Scripting Interpreter (T1059)]]s or even network protocols that can be abused to enable [[T1557_Adversary-in-the-Middle|Adversary-in-the-Middle (T1557)]].[3](https://www.praetorian.com/blog/man-in-the-middle-tls-ssl-protocol-downgrade-attack/)
 
+#### Spoof Security Alerting - T1562.011
+[more on T1562.011](https://attack.mitre.org/techniques/T1562/011)
 
+Adversaries may spoof security alerting from tools, presenting false evidence to impair defenders’ awareness of malicious activity. [1](https://www.sentinelone.com/labs/black-basta-ransomware-attacks-deploy-custom-edr-evasion-tools-tied-to-fin7-threat-actor/) Messages produced by defensive tools contain information about potential security events as well as the functioning status of security software and the system. Security reporting messages are important for monitoring the normal operation of a system and identifying important events that can signal a security incident.
+
+Rather than or in addition to [[T1562_Impair Defenses#Indicator Blocking - T1562.006|Indicator Blocking]], an adversary can spoof positive affirmations that security tools are continuing to function even after legitimate security tools have been disabled (e.g., [[T1562_Impair Defenses#Disable or Modify Tools - T1562.001|Disable or Modify Tools]]). An adversary can also present a "healthy" system status even after infection. This can be abused to enable further malicious activity by delaying defender responses.
+
+For example, adversaries may show a fake Windows Security GUI and tray icon with a "healthy" system status after Windows Defender and other system tools have been disabled. [1](https://www.sentinelone.com/labs/black-basta-ransomware-attacks-deploy-custom-edr-evasion-tools-tied-to-fin7-threat-actor/)
+
+#### Disable or Modify Linux Audit System - T1562.012
+[more on T1562.012](https://attack.mitre.org/techniques/T1562/012)
+
+Adversaries may disable or modify the Linux audit system to hide malicious activity and avoid detection. Linux admins use the Linux Audit system to track security-relevant information on a system. The Linux Audit system operates at the kernel-level and maintains event logs on application and system activity such as process, network, file, and login events based on pre-configured rules.
+
+Often referred to as `auditd`, this is the name of the daemon used to write events to disk and is governed by the parameters set in the `audit.conf` configuration file. Two primary ways to configure the log generation rules are through the command line `auditctl` utility and the file `/etc/audit/audit.rules`, containing a sequence of `auditctl` commands loaded at boot time. [1](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/security_guide/chap-system_auditing) [2](https://izyknows.medium.com/linux-auditd-for-threat-detection-d06c8b941505)
+
+With root privileges, adversaries may be able to ensure their activity is not logged through disabling the Audit system service, editing the configuration/rule files, or by hooking the Audit system library functions. Using the command line, adversaries can disable the Audit system service through killing processes associated with `auditd` daemon or use `systemctl` to stop the Audit service. Adversaries can also hook Audit system functions to disable logging or modify the rules contained in the `/etc/audit/audit.rules` or `audit.conf` files to ignore malicious activity. [3](https://www.trustwave.com/en-us/resources/blogs/spiderlabs-blog/honeypot-recon-new-variant-of-skidmap-targeting-redis/) [4](https://www.welivesecurity.com/2014/02/21/an-in-depth-analysis-of-linuxebury/)
 

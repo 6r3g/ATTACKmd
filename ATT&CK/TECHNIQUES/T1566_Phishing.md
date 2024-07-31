@@ -36,5 +36,13 @@ All forms of spearphishing are electronically delivered social engineering targe
 
 A common example is to build rapport with a target via social media, then send content to a personal webmail service that the target uses on their work computer. This allows an adversary to bypass some email restrictions on the work account, and the target is more likely to open the file since it's something they were expecting. If the payload doesn't work as expected, the adversary can continue normal communications and troubleshoot with the target on how to get it working.
 
+#### Spearphishing Voice - T1566.004
+[more on T1566.004](https://attack.mitre.org/techniques/T1566/004)
+
+Adversaries may use voice communications to ultimately gain access to victim systems. Spearphishing voice is a specific variant of spearphishing. It is different from other forms of spearphishing in that is employs the use of manipulating a user into providing access to systems through a phone call or other forms of voice communications. Spearphishing frequently involves social engineering techniques, such as posing as a trusted source (ex: [[T1656_Impersonation|Impersonation]]) and/or creating a sense of urgency or alarm for the recipient.
+
+All forms of phishing are electronically delivered social engineering. In this scenario, adversaries are not directly sending malware to a victim vice relying on [[T1204_User Execution|User Execution]] for delivery and execution. For example, victims may receive phishing messages that instruct them to call a phone number where they are directed to visit a malicious URL, download malware, [1](https://blog.sygnia.co/luna-moth-false-subscription-scams) [2](https://www.cisa.gov/uscert/ncas/alerts/aa23-025a) or install adversary-accessible remote management tools ([[T1219_Remote Access Software|Remote Access Software]]) onto their computer. [3](https://unit42.paloaltonetworks.com/luna-moth-callback-phishing/)
+
+Adversaries may also combine voice phishing with [[T1621_Multi-Factor Authentication Request Generation|Multi-Factor Authentication Request Generation]] in order to trick users into divulging MFA credentials or accepting authentication prompts. [4](https://www.proofpoint.com/us/threat-reference/vishing)
 
 
