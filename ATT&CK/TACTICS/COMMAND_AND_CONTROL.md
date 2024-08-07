@@ -13,22 +13,24 @@ Command and Control consists of techniques that adversaries may use to communica
 ---
 ## Techniques
 
-| 00  | Technique (A to Z)                                    |
-| --- | ----------------------------------------------------- |
-| 01  | [[T1071_Application Layer Protocol]]            |
-| 02  | [[T1092_Communication Through Removable Media]] |
-| 03  | [[T1132_Data Encoding]]                         |
-| 04  | [[T1001_Data Obfuscation]]                      |
-| 05  | [[T1568_Dynamic Resolution]]                    |
-| 06  | [[T1573_Encrypted Channel]]                     |
-| 07  | [[T1008_Fallback Channels]]                     |
-| 08  | [[T1105_Ingress Tool Transfer]]                 |
-| 09  | [[T1104_Multi-Stage Channels]]                  |
-| 10  | [[T1095_Non-Application Layer Protocol]]        |
-| 11  | [[T1571_Non-Standard Port]]                     |
-| 12  | [[T1572_Protocol Tunneling]]                    |
-| 13  | [[T1090_Proxy]]                                 |
-| 14  | [[T1219_Remote Access Software]]                |
-| 15  | [[T1205_Traffic Signaling]]                     |
-| 16  | [[T1102_Web Service]]                           | 
+| 00  | Technique (A to Z)                              |     |
+| --- | ----------------------------------------------- | --- |
+| 01  | [[T1071_Application Layer Protocol]]            |     |
+| 02  | [[T1092_Communication Through Removable Media]] |     |
+| 03  | [[T1132_Data Encoding]]                         |     |
+| 04  | [[T1001_Data Obfuscation]]                      |     |
+| 05  | [[T1568_Dynamic Resolution]]                    |     |
+| 06  | [[T1573_Encrypted Channel]]                     |     |
+| 07  | [[T1008_Fallback Channels]]                     |     |
+| 08  | [[T1105_Ingress Tool Transfer]]                 |     |
+| 09  | [[T1104_Multi-Stage Channels]]                  |     |
+| 10  | [[T1095_Non-Application Layer Protocol]]        |     |
+| 11  | [[T1571_Non-Standard Port]]                     |     |
+| 12  | [[T1572_Protocol Tunneling]]                    |     |
+| 13  | [[T1090_Proxy]]                                 |     |
+| 14  | [[T1219_Remote Access Software]]                |     |
+| 15  | [[T1205_Traffic Signaling]]                     |     |
+| 16  | [[T1102_Web Service]]                           |     |
+| 17  | [[T1659_Content Injection]]                     |     |
+| 18  | [[T1665_Hide Infrastructure]]                   |     |
 

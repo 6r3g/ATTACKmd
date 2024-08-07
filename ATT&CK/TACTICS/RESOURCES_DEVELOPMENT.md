@@ -13,13 +13,14 @@ Resource Development consists of techniques that involve adversaries creating, p
 ---
 ## Techniques
 
-| 00  | Technique ( A to Z )                                |
-| --- | :----------------------------------------- |
+| 00  | Technique ( A to Z )                |
+| --- | :---------------------------------- |
 | 01  | [[T1583_Acquire Infrastructure]]    |
 | 02  | [[T1586_Compromise Accounts]]       |
 | 03  | [[T1584_Compromise Infrastructure]] |
 | 04  | [[T1587_Develop Capabilities]]      |
 | 05  | [[T1585_Establish Accounts]]        |
 | 06  | [[T1588_Obtain Capabilities]]       |
-| 07  | [[T1608_Stage Capabilities]]       |
+| 07  | [[T1608_Stage Capabilities]]        |
+| 08  | [[T1650_Acquire Access]]            |
 

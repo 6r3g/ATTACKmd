@@ -20,21 +20,22 @@ These techniques often overlap with Persistence techniques, as OS features that 
 ---
 ## Techniques
 
-| 00  | Technique ( A to Z )                                            |
-| --- | :----------------------------------------------------- |
-| 01  | [[T1548_Abuse Elevation Control Mechanism]]     |
-| 02  | [[T1134_Access Token Manipulation]]             |
-| 03  | [[T1547_Boot or Logon Autostart Execution]]     |
-| 04  | [[T1037_Boot or Logon Initialization Scripts]]  |
-| 05  | [[T1543_Create or Modify System Process]]      |
-| 06  | [[T1484_Domain Policy Modification]]            |
-| 07  | [[T1611_Escape to Host]]                        |
-| 08  | [[T1546_Event Triggered Execution]]             |
-| 09  | [[T1068_Exploitation for Privilege Escalation]] |
-| 10  | [[T1574_Hijack Execution Flow]]                 |
-| 11  | [[T1055_Process Injection]]                     |
-| 12  | [[T1053_Scheduled Task-Job]]                    |
-| 13  | [[T1078_Valid Accounts]]                        | 
+| 00  | Technique ( A to Z )                            |     |
+| --- | :---------------------------------------------- | --- |
+| 01  | [[T1548_Abuse Elevation Control Mechanism]]     |     |
+| 02  | [[T1134_Access Token Manipulation]]             |     |
+| 03  | [[T1547_Boot or Logon Autostart Execution]]     |     |
+| 04  | [[T1037_Boot or Logon Initialization Scripts]]  |     |
+| 05  | [[T1543_Create or Modify System Process]]       |     |
+| 06  | [[T1484_Domain Policy Modification]]            |     |
+| 07  | [[T1611_Escape to Host]]                        |     |
+| 08  | [[T1546_Event Triggered Execution]]             |     |
+| 09  | [[T1068_Exploitation for Privilege Escalation]] |     |
+| 10  | [[T1574_Hijack Execution Flow]]                 |     |
+| 11  | [[T1055_Process Injection]]                     |     |
+| 12  | [[T1053_Scheduled Task-Job]]                    |     |
+| 13  | [[T1078_Valid Accounts]]                        |     |
+| 14  | [[T1098_Account Manipulation]]                  |     |
 
 
 

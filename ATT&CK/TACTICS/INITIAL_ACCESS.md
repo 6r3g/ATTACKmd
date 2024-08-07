@@ -13,17 +13,18 @@ Initial Access consists of techniques that use various entry vectors to gain the
 ---
 ## Techniques
 
-| 00  | Technique ( A to Z )                                          |
-| --- | :--------------------------------------------------- |
-| 01  | [[T1189_Drive-by Compromise]]                 |
-| 02  | [[T1190_Exploit Public-Facing Application]]   |
-| 03  | [[T1133_External Remote Services]]            |
-| 04  | [[T1200_Hardware Additions]]                  |
-| 05  | [[T1566_Phishing]]                            |
-| 06  | [[T1091_Replication Through Removable Media]] |
-| 07  | [[T1195_Supply Chain Compromise]]             |
-| 08  | [[T1199_Trusted Relationship]]                |
-| 09  | [[T1078_Valid Accounts]]                      | 
+| 00  | Technique ( A to Z )                          |     |
+| --- | :-------------------------------------------- | --- |
+| 01  | [[T1189_Drive-by Compromise]]                 |     |
+| 02  | [[T1190_Exploit Public-Facing Application]]   |     |
+| 03  | [[T1133_External Remote Services]]            |     |
+| 04  | [[T1200_Hardware Additions]]                  |     |
+| 05  | [[T1566_Phishing]]                            |     |
+| 06  | [[T1091_Replication Through Removable Media]] |     |
+| 07  | [[T1195_Supply Chain Compromise]]             |     |
+| 08  | [[T1199_Trusted Relationship]]                |     |
+| 09  | [[T1078_Valid Accounts]]                      |     |
+| 10  | [[T1659_Content Injection]]                   |     |
 
 
 

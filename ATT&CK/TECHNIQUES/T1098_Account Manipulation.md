@@ -1,4 +1,4 @@
-Tactics: [[PERSISTENCE]]
+Tactics: [[PERSISTENCE]] - [[PRIVILEGE_ESCALATION]]
 Tags: #mitre/attack/techniques/T1098  
 
 # Account Manipulation - T1098
