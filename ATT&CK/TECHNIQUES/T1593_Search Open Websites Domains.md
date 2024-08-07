@@ -27,3 +27,13 @@ Adversaries may use search engines to collect information about victims that can
 
 Adversaries may craft various search engine queries depending on what information they seek to gather. Threat actors may use search engines to harvest general information about victims, as well as use specialized queries to look for spillages/leaks of sensitive information such as network details or credentials. Information from these sources may reveal opportunities for other forms of reconnaissance (ex: [[T1598_Phishing for Information|Phishing for Information (T1598)]] or [[T1596_Search Open Technical Databases|Search Open Technical Databases (T1596)]]), establishing operational resources (ex: [[T1585_Establish Accounts|Establish Accounts (T1585)]] or [[T1586_Compromise Accounts|Compromise Accounts (T1586)]]), and/or initial access (ex: [[T1078_Valid Accounts|Valid Accounts (T1078)]] or [[T1566_Phishing|Phishing (T1566)]]).
 
+
+#### Code Repositories - T1593.003
+[more on T1593.003](https://attack.mitre.org/techniques/T1593/003)
+
+Adversaries may search public code repositories for information about victims that can be used during targeting. Victims may store code in repositories on various third-party websites such as GitHub, GitLab, SourceForge, and BitBucket. Users typically interact with code repositories through a web application or command-line utilities such as git.
+
+Adversaries may search various public code repositories for various information about a victim. Public code repositories can often be a source of various general information about victims, such as commonly used programming languages and libraries as well as the names of employees. Adversaries may also identify more sensitive data, including accidentally leaked credentials or API keys. [1](https://www.forbes.com/sites/runasandvik/2014/01/14/attackers-scrape-github-for-cloud-service-credentials-hijack-account-to-mine-virtual-currency/) Information from these sources may reveal opportunities for other forms of reconnaissance (ex: [[T1598_Phishing for Information|Phishing for Information]]), establishing operational resources (ex: [[T1586_Compromise Accounts|Compromise Accounts]] or [[T1584_Compromise Infrastructure|Compromise Infrastructure]]), and/or initial access (ex: [[T1078_Valid Accounts|Valid Accounts]] or [[T1566_Phishing|Phishing]]).
+
+**Note:** This is distinct from [[T1213_Data from Information Repositories#Code Repositories - T1213.003|Code Repositories]], which focuses on [[COLLECTION|Collection]] from private and internally hosted code repositories.
+

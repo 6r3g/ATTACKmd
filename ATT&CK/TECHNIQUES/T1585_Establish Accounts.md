@@ -31,3 +31,11 @@ Adversaries may create email accounts that can be used during targeting. Adversa
 
 To decrease the chance of physically tying back operations to themselves, adversaries may make use of disposable email services.[2](https://blog.trendmicro.com/trendlabs-security-intelligence/r980-ransomware-disposable-email-service/)
 
+
+#### Cloud Accounts - T1583.003
+[more on T1585.003](https://attack.mitre.org/techniques/T1585/003)
+
+Adversaries may create accounts with cloud providers that can be used during targeting. Adversaries can use cloud accounts to further their operations, including leveraging cloud storage services such as Dropbox, MEGA, Microsoft OneDrive, or AWS S3 buckets for [[T1567_Exfiltration Over Web Service#Exfiltration to Cloud Storage - T1567.002|Exfiltration to Cloud Storage]] or to [[T1608_Stage Capabilities#Upload Tool - T1608.002|Upload Tool]]s. Cloud accounts can also be used in the acquisition of infrastructure, such as [[T1583_Acquire Infrastructure#Virtual Private Server - T1583.003|Virtual Private Server]]s or [[T1583_Acquire Infrastructure#Serverless - T1583.007|Serverless]] infrastructure. Establishing cloud accounts may allow adversaries to develop sophisticated capabilities without managing their own servers. [1](https://awakesecurity.com/blog/threat-hunting-series-detecting-command-control-in-the-cloud/)
+
+Creating [[T1585_Establish Accounts#Cloud Accounts - T1583.003|Cloud Accounts]] may also require adversaries to establish [[T1585_Establish Accounts#Email Accounts - T1585.002|Email Accounts]] to register with the cloud provider.
+

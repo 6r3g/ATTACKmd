@@ -66,3 +66,10 @@ Adversaries may acquire information about vulnerabilities that can be used durin
 An adversary may monitor vulnerability disclosures/databases to understand the state of existing, as well as newly discovered, vulnerabilities. There is usually a delay between when a vulnerability is discovered and when it is made public. An adversary may target the systems of those known to conduct vulnerability research (including commercial vendors). Knowledge of a vulnerability may cause an adversary to search for an existing exploit (i.e. [[T1588_Obtain Capabilities#Exploits - T1588 005|Exploits (T1588.005)]]) or to attempt to develop one themselves (i.e. [[T1587_Develop Capabilities#Exploits - T1587 004|Exploits (T1587.004)]]).
 
 
+#### Artificial Intelligence - T1588.007
+[more on T1588.007](https://attack.mitre.org/techniques/T1588/007)
+
+Adversaries may obtain access to generative artificial intelligence tools, such as large language models (LLMs), to aid various techniques during targeting. These tools may be used to inform, bolster, and enable a variety of malicious tasks including conducting [[RECONNAISSANCE|Reconnaissance]], creating basic scripts, assisting social engineering, and even developing payloads. [1](https://www.microsoft.com/en-us/security/blog/2024/02/14/staying-ahead-of-threat-actors-in-the-age-of-ai/)
+
+For example, by utilizing a publicly available LLM an adversary is essentially outsourcing or automating certain tasks to the tool. Using AI, the adversary may draft and generate content in a variety of written languages to be used in [[T1566_Phishing|Phishing]]/[[T1598_Phishing for Information|Phishing for Information]] campaigns. The same publicly available tool may further enable vulnerability or other offensive research supporting [[T1587_Develop Capabilities|Develop Capabilities]]. AI tools may also automate technical tasks by generating, refining, or otherwise enhancing (e.g., [[T1027_Obfuscated Files or Information|Obfuscated Files or Information]]) malicious scripts and payloads. [2](https://openai.com/blog/disrupting-malicious-uses-of-ai-by-state-affiliated-threat-actors)
+

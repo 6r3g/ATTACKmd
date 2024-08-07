@@ -65,3 +65,14 @@ Typically, the resources for a link target will be an HTML page that may include
 
 Adversaries may purchase domains similar to legitimate domains (ex: homoglyphs, typosquatting, different top-level domain, etc.) during acquisition of infrastructure ([[T1583_Acquire Infrastructure#Domains - T1583 001|Domains (T1583.001)]]) to help facilitate [[T1204_User Execution#Malicious Link - T1204 001|Malicious Link (T1204.001)]]. Link shortening services can also be employed.
 
+#### SEO Poisoning - T1608.006
+[more on T1608.006](https://attack.mitre.org/techniques/T1608/006)
+
+Adversaries may poison mechanisms that influence search engine optimization (SEO) to further lure staged capabilities towards potential victims. Search engines typically display results to users based on purchased ads as well as the site’s ranking/score/reputation calculated by their web crawlers and algorithms. [1](https://atlas-cybersecurity.com/cyber-threats/threat-actors-use-search-engine-optimization-tactics-to-redirect-traffic-and-install-malware/) [2](https://www.malwarebytes.com/blog/news/2018/05/seo-poisoning-is-it-worth-it)
+
+To help facilitate [[T1189_Drive-by Compromise|Drive-by Compromise]], adversaries may stage content that explicitly manipulates SEO rankings in order to promote sites hosting their malicious payloads (such as [[T1608_Stage Capabilities#Drive-by Target - T1608.004|Drive-by Target]]) within search engines. Poisoning SEO rankings may involve various tricks, such as stuffing keywords (including in the form of hidden text) into compromised sites. These keywords could be related to the interests/browsing habits of the intended victim(s) as well as more broad, seasonably popular topics (e.g. elections, trending news). [3](https://www.zscaler.com/blogs/security-research/ubiquitous-seo-poisoning-urls-0) [1](https://atlas-cybersecurity.com/cyber-threats/threat-actors-use-search-engine-optimization-tactics-to-redirect-traffic-and-install-malware/)
+
+Adversaries may also purchase or plant incoming links to staged capabilities in order to boost the site’s calculated relevance and reputation. [2](https://www.malwarebytes.com/blog/news/2018/05/seo-poisoning-is-it-worth-it) [4](https://thedfirreport.com/2022/05/09/seo-poisoning-a-gootloader-story/)
+
+SEO poisoning may also be combined with evasive redirects and other cloaking mechanisms (such as measuring mouse movements or serving content based on browser user agents, user language/localization settings, or HTTP headers) in order to feed SEO inputs while avoiding scrutiny from defenders. [3](https://www.zscaler.com/blogs/security-research/ubiquitous-seo-poisoning-urls-0) [5](https://news.sophos.com/en-us/2021/03/01/gootloader-expands-its-payload-delivery-options/)
+

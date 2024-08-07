@@ -1,0 +1,16 @@
+Tactics: [[CREDENTIAL_ACCESS]]
+Tags: #mitre/attack/techniques/T1649
+
+# Steal or Forge Authentication Certificates - T1649
+---
+## Description
+[more on T1649](https://attack.mitre.org/techniques/T1649)
+
+Adversaries may steal or forge certificates used for authentication to access remote systems or resources. Digital certificates are often used to sign and encrypt messages and/or files. Certificates are also used as authentication material. For example, Azure AD device certificates and Active Directory Certificate Services (AD CS) certificates bind to an identity and can be used as credentials for domain accounts. [1](https://o365blog.com/post/deviceidentity/) [2](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/hh831740(v=ws.11))
+
+Authentication certificates can be both stolen and forged. For example, AD CS certificates can be stolen from encrypted storage (in the Registry or files) [3](https://www.mandiant.com/resources/blog/apt29-windows-credential-roaming), misplaced certificate files (i.e. [[T1552_Unsecured Credentials|Unsecured Credentials]]), or directly from the Windows certificate store via various crypto APIs. [4](https://web.archive.org/web/20220818094600/https://specterops.io/assets/resources/Certified_Pre-Owned.pdf) [5](https://github.com/TheWover/CertStealer) [6](https://github.com/GhostPack/SharpDPAPI#certificates) With appropriate enrollment rights, users and/or machines within a domain can also request and/or manually renew certificates from enterprise certificate authorities (CA). This enrollment process defines various settings and permissions associated with the certificate. Of note, the certificate’s extended key usage (EKU) values define signing, encryption, and authentication use cases, while the certificate’s subject alternative name (SAN) values define the certificate owner’s alternate names. [7](https://posts.specterops.io/certified-pre-owned-d95910965cd2)
+
+Abusing certificates for authentication credentials may enable other behaviors such as [[LATERAL_MOVEMENT|Lateral Movement]]. Certificate-related misconfigurations may also enable opportunities for [[PRIVILEGE_ESCALATION|Privilege Escalation]], by way of allowing users to impersonate or assume privileged accounts or permissions via the identities (SANs) associated with a certificate. These abuses may also enable [[PERSISTENCE|Persistence]] via stealing or forging certificates that can be used as [[T1078_Valid Accounts|Valid Accounts]] for the duration of the certificate's validity, despite user password resets. Authentication certificates can also be stolen and forged for machine accounts.
+
+Adversaries who have access to root (or subordinate) CA certificate private keys (or mechanisms protecting/managing these keys) may also establish [[PERSISTENCE|Persistence]] by forging arbitrary authentication certificates for the victim domain (known as "golden" certificates). [7](https://posts.specterops.io/certified-pre-owned-d95910965cd2) Adversaries may also target certificates and related services in order to access other forms of credentials, such as [[T1558_Steal or Forge Kerberos Tickets#Golden Ticket - T1558.001|Golden Ticket]] ticket-granting tickets (TGT) or NTLM plaintext. [7](https://posts.specterops.io/certified-pre-owned-d95910965cd2)
+
